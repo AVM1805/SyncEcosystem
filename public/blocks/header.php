@@ -6,7 +6,7 @@
     </div>
     <div class="container middle">
         <div class="logo">
-            <img src="/public/img/system/logo.png" alt="Logo">
+            <img src="/public/files/system/logo.png" alt="Logo">
             <span>SyncEcosystem</span>
         </div>
         <div class="auth-checkout">
