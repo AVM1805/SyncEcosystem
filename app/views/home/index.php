@@ -43,12 +43,24 @@
             <button class="btn" id="send">Добавить</button>
         </form>
         <h2>Ваши записи:</h2>
+        <?php
+            function isImage($path) {
+                if(is_array(getimagesize($path))){
+                    $image = true;
+                } else {
+                    $image = false;
+                }
+            }
+        ?>
         <?php for($i = 0; $i < count($data); $i++):?>
             <div class="items-info">
                 <p><b>Текст:</b> <?= $data[$i]['text']?></p>
                 <?php if($data[$i]['filename'] != ''):?>
-                    <img src="/public/img/<?= $data[$i]['filename']?>" class="shortcut">
+                    <img src="/public/files/<?= $data[$i]['filename']?>" class="shortcut">
+                <?php elseif(isImage($data[$i]['filename']) == false): ?>
+                    <a href="<?= $data[$i]['filename'] ?>" download>Скачать файл</a>
                 <?php endif;?>
+
                 <form action="/" method="post" style="margin-top: 10px">
                     <input type="hidden" name="delete_button" value="<?= $data[$i]['id']?>">
                     <button type="submit" class="btn">Удалить</button>
