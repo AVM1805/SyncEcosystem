@@ -57,7 +57,7 @@
                 <p><b>Текст:</b> <?= $data[$i]['text']?></p>
                 <?php if($data[$i]['filename'] != ''):?>
                     <img src="/public/files/<?= $data[$i]['filename']?>" class="shortcut">
-                <?php elseif(isImage($data[$i]['filename']) == false): ?>
+                <?php elseif(isImage($data[$i]['filename']) == false and $data[$i]['filename'] != ''): ?>
                     <a href="<?= $data[$i]['filename'] ?>" download>Скачать файл</a>
                 <?php endif;?>
 
