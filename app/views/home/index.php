@@ -46,7 +46,7 @@
         <?php for($i = 0; $i < count($data); $i++):?>
             <div class="items-info">
                 <p><b>Текст:</b> <?= $data[$i]['text']?></p>
-                <?php if($data[$i]['img'] != ''):?>
+                <?php if($data[$i]['filename'] != ''):?>
                     <img src="/public/img/<?= $data[$i]['filename']?>" class="shortcut">
                 <?php endif;?>
                 <form action="/" method="post" style="margin-top: 10px">
