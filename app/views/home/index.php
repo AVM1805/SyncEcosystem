@@ -47,7 +47,7 @@
             <div class="items-info">
                 <p><b>Текст:</b> <?= $data[$i]['text']?></p>
                 <?php if($data[$i]['img'] != ''):?>
-                    <img src="/public/img/<?= $data[$i]['img']?>" class="shortcut">
+                    <img src="/public/img/<?= $data[$i]['filename']?>" class="shortcut">
                 <?php endif;?>
                 <form action="/" method="post" style="margin-top: 10px">
                     <input type="hidden" name="delete_button" value="<?= $data[$i]['id']?>">
