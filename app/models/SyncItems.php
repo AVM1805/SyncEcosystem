@@ -31,10 +31,11 @@
         }
 
         public function setItem($text, $file, $email){
-                move_uploaded_file($file['file']['tmp_name'], 'public/files/'.$file['file']['name'].$_SERVER['REQUEST_TIME']);
-                $sql = 'INSERT INTO `items` (`id`, `text`, `img`, `belongs`) VALUES (NULL, :text, :img, :belongs)';
+                $filename = $_SERVER['REQUEST_TIME'].$file['file']['name'];
+                move_uploaded_file($file['file']['tmp_name'], 'public/files/'.$filename);
+                $sql = 'INSERT INTO `items` (`id`, `text`, `filename`, `belongs`) VALUES (NULL, :text, :filename, :belongs)';
                 $query = $this->_db->prepare($sql);
-                $query->execute(['text' => $text, 'img' => $file['file']['name'], 'belongs' => $email]);
+                $query->execute(['text' => $text, 'filename' => $filename, 'belongs' => $email]);
                 unset($_POST);
         }
 

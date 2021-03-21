@@ -1,6 +1,0 @@
-
-# Beget FileManager Auth rules
-AuthName "Protected area, need authorization"
-AuthType Basic
-AuthUserFile /home/s/s95024c4/atp/public_html/public/.htpasswd
-require valid-user

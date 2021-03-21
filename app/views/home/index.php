@@ -45,20 +45,22 @@
         <h2>Ваши записи:</h2>
         <?php
             function isImage($path) {
-                if(is_array(getimagesize($path))){
-                    $image = true;
+                $exp = explode(".", $path);
+                $img_exp = ['png', 'jpg', 'jpeg', 'svg', 'gif'];
+                if(is_numeric(array_search($exp[1], $img_exp))) {
+                    return true;
                 } else {
-                    $image = false;
+                    return false;
                 }
             }
         ?>
         <?php for($i = 0; $i < count($data); $i++):?>
             <div class="items-info">
                 <p><b>Текст:</b> <?= $data[$i]['text']?></p>
-                <?php if($data[$i]['filename'] != ''):?>
+                <?php if(isImage($data[$i]['filename'])): ?>
                     <img src="/public/files/<?= $data[$i]['filename']?>" class="shortcut">
-                <?php elseif(isImage($data[$i]['filename']) == false and $data[$i]['filename'] != ''): ?>
-                    <a href="<?= $data[$i]['filename'] ?>" download>Скачать файл</a>
+                <?php else: ?>
+                    <a href="/public/files/<?= $data[$i]['filename'] ?>" download>Скачать файл</a>
                 <?php endif;?>
 
                 <form action="/" method="post" style="margin-top: 10px">
