@@ -23,7 +23,7 @@
     <script type="text/javascript">
         setInterval(
             () => {
-                $.get("http://localhost:81/", {}, function (data, status) {
+                $.get("http://atp.s95024c4.beget.tech/", {}, function (data, status) {
                     let parser = new DOMParser();
                     let newStr = parser.parseFromString(data, "text/html");
                     let newInner = newStr.getElementById('items').innerHTML
