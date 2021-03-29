@@ -109,7 +109,7 @@ header>.middle {
 }
 
 header>.middle>.logo img {
-    width: 150px;
+    max-width: 150px;
     float: left;
     margin-right: 20px;
 }
@@ -119,7 +119,7 @@ header>.middle>.logo span {
     font-size: 30px;
     font-weight: 700;
     display: block;
-    width: 250px;
+    max-width: 150px;
     margin-top: 30px;
 }
 

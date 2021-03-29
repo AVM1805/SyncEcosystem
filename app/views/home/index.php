@@ -19,6 +19,29 @@
     <link rel="stylesheet" href="/public/css/main.css" charset="utf-8">
     <link rel="stylesheet" href="/public/css/form.css" charset="utf-8">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        setInterval(
+            () => {
+                $.get("http://localhost:81/", {}, function (data, status) {
+                    let parser = new DOMParser();
+                    let newStr = parser.parseFromString(data, "text/html");
+                    let newInner = newStr.getElementById('items').innerHTML
+                    console.log()
+
+                    //let old = parser.parseFromString(window.document.documentElement, "text/html");
+                    let oldStr = document.getElementById('items').innerHTML
+                    console.log()
+                    if(oldStr.length != newInner.length) {
+                        let parser = new DOMParser();
+                        let doc = parser.parseFromString(data, "text/html");
+                        let result = doc.getElementById('items').innerHTML
+                        $("#items").html(result)
+                    }
+                    
+                });
+            }, 3000)
+    </script>
 </head>
 <body>
 <?php require 'public/blocks/header.php' ?>
@@ -35,6 +58,7 @@
         <button class="btn" id="send">Готово</button>
     </form>
     <?php else: ?>
+    
         <form action="/" method="post" class="form-control" enctype="multipart/form-data">
             <input type="text" name="text" placeholder="Введите текст" autocomplete="off"><br>
             <input type="hidden" name="MAX_FILE_SIZE" value="99999999" />
@@ -43,6 +67,7 @@
             <button class="btn" id="send">Добавить</button>
         </form>
         <h2>Ваши записи:</h2>
+        <div id="items">
         <?php
             function isImage($path) {
                 $exp = explode(".", $path);
@@ -70,6 +95,7 @@
             </div>
         <?php endfor;?>
     <?php endif; ?>
+    </div>
 </div>
 
 <?php require 'public/blocks/footer.php' ?>
