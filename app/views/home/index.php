@@ -18,29 +18,24 @@
 
     <link rel="stylesheet" href="/public/css/main.css" charset="utf-8">
     <link rel="stylesheet" href="/public/css/form.css" charset="utf-8">
+    <link rel="shortcut icon" href="/public/system/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
         setInterval(
             () => {
                 $.get("http://atp.s95024c4.beget.tech/", {}, function (data, status) {
+                    //http://localhost:81/
                     let parser = new DOMParser();
-                    let newStr = parser.parseFromString(data, "text/html");
-                    let newInner = newStr.getElementById('items').innerHTML
-                    console.log()
-
-                    //let old = parser.parseFromString(window.document.documentElement, "text/html");
-                    let oldStr = document.getElementById('items').innerHTML
-                    console.log()
-                    if(oldStr.length != newInner.length) {
-                        let parser = new DOMParser();
-                        let doc = parser.parseFromString(data, "text/html");
-                        let result = doc.getElementById('items').innerHTML
-                        $("#items").html(result)
-                    }
+                    let latest = parser.parseFromString(data, "text/html");
+                    let newInner = latest.getElementById('items').innerHTML
                     
+                    let oldInner = document.getElementById('items').innerHTML
+                    if(oldInner.length != newInner.length) {
+                        $("#items").html(newInner)
+                    }
                 });
-            }, 3000)
+            }, 2000)
     </script>
 </head>
 <body>
@@ -84,7 +79,7 @@
                 <p><b>Текст:</b> <?= $data[$i]['text']?></p>
                 <?php if(isImage($data[$i]['filename'])): ?>
                     <img src="/public/files/<?= $data[$i]['filename']?>" class="shortcut">
-                <?php else: ?>
+                <?php elseif(preg_match('/[0-9]$/i', $data[$i]['filename']) == 0): ?>
                     <a href="/public/files/<?= $data[$i]['filename'] ?>" download>Скачать файл</a>
                 <?php endif;?>
 
