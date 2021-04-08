@@ -10,8 +10,8 @@
         }
 
         public function getItems() {
-            $email = $_COOKIE['login'];
-            $result = $this->_db->query("SELECT * FROM `items` WHERE `belongs` = '$email' ORDER BY id DESC");
+            $email = $_COOKIE['login'];//*
+            $result = $this->_db->query("SELECT * FROM `items` WHERE `belongs` = '$email' ORDER BY id DESC");//*
             return $result->fetchAll(PDO::FETCH_ASSOC);
         }
 
